@@ -6,16 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+<style>
+
+</style>
 
 <body>
+    <h1> L o g i n </h1>
 
-    <form action="">
+    <form>
         <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="Username">
+
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" placeholder="Password">
+        <input type="password" id="password" name="password" placeholder="Password">
+
         <button type="submit">Login</button>
     </form>
+
+    <script>
+
+        var form = document.querySelector('form')
+
+        form.onsubmit = function (event) {
+            event.preventDefault()
+
+            var usernameInput = document.getElementById('username')
+            var passwordInput = document.getElementById('password')
+
+            var username = usernameInput.value
+            var password = passwordInput.value
+
+            if (username.trim().lenght < 2)
+                alert('invalid username')
+            else if (password.trim().lenght < 8)
+                alert('invalid password')
+
+            else {
+                var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+
+                var user = users.find(function (user) {
+                    return user.username === username
+                })
+
+                if (user === undefined)
+                    alert('username does not exists')
+
+                else if (user.password !== password)
+                    alert('wrong password')
+
+                else {
+                    sessionStorage.username = username
+
+                    location.href = 'home.html'
+                }
+            }
+        }
+
+        var a = document.querySelector('a')
+
+        a.onclick = function (event) {
+            event.preventDefault()
+
+            location.href = 'register.html'
+        }
+
+    </script>
+
     <a href="register.html">Register</a>
 </body>
 

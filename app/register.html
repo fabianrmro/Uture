@@ -6,36 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+<style>
+
+</style>
 
 <body>
 
-    <form action="">
-        <label for="name">Name</label>
+    <form>
+        <label for="name"> Name </label>
         <input type="text" id="name" name="name" placeholder="Name">
 
         <label for="surname">Surname</label>
         <input type="text" id="surname" name="surname" placeholder="Surname">
 
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username">
+
         <label for="email">E-mail</label>
         <input type="text" id="email" name="email" placeholder="E-Mail">
 
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" placeholder="Password">
+        <input type="password" id="password" name="password" placeholder="Password">
 
-        <label for="repeat-password">Repeat Password</label>
-        <input type="text" id="repeat-password" name="repeat-password" placeholder="Repeat Password">
+        <label for="paswordRepeat">Password Repeat</label>
+        <input type="password" id="passwordRepeat" name="paswordRepeat" placeholder="Repeat Password">
 
-
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name">
-
-
-        <label for="password">Password</label>
-        <input type="text" id="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
     </form>
 
     <a href="login.html">Login</a>
+
+    <script>
+
+        var EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+
+        var form = document.querySelector('form')
+
+        form.onsubmit = function (event) {
+            event.preventDefault()
+
+            var nameInput = document.getElementById('name')
+            var surnameInput = document.getElementById('surname')
+            var usernameInput = document.getElementById('username')
+            var emailInput = document.getElementById('email')
+            var passwordInput = document.getElementById('password')
+            var passwordRepeatInput = document.getElementById('passwordRepeat')
+
+            var name = nameInput.value
+            var surname = surnameInput.value
+            var username = usernameInput.value
+            var email = emailInput.value
+            var password = passwordInput.value
+            var passwordRepeat = passwordRepeatInput.value
+
+            if (name.trim() === '' || name.lenght < 2)
+                alert('invalid name')
+            else if (surname.trim() === '' || surname.lenght < 2)
+                alert('ivalid surname')
+            else if (username.trim() === '' || username.lenght < 2)
+                alert('invalid username')
+            else if (EMAIL_REGEX.test(email))
+                alert('invalid email')
+            else if (password.trim() === '')
+                alert('invalid password')
+            else if (password.trim() !== passwordRepeat)
+                alert('password do not match ')
+
+            else {
+                var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+
+                var user = users.find(function (user) {
+                    return user.email === email || user.username === username
+                })
+
+                if (user !== undefined)
+                    alert('user already exists')
+
+                else if (password !== password)
+                    alert('password do not match')
+
+                else {
+                    user = {
+                        name: name,
+                        surname: surname,
+                        username: username,
+                        email: email,
+                        password: password
+                    }
+
+                    users.push(user)
+
+                    localStorage.users = JSON.stringify(users)
+
+                    alert('user successfully registered')
+
+                    location.href = 'login.html'
+
+                }
+            }
+
+        }
+
+    </script>
 </body>
 
 </html>
