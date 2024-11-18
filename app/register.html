@@ -59,55 +59,62 @@
             var password = passwordInput.value
             var passwordRepeat = passwordRepeatInput.value
 
-            if (name.trim() === '' || name.lenght < 2)
-                alert('invalid name')
-            else if (surname.trim() === '' || surname.lenght < 2)
-                alert('ivalid surname')
-            else if (username.trim() === '' || username.lenght < 2)
-                alert('invalid username')
-            else if (EMAIL_REGEX.test(email))
-                alert('invalid email')
-            else if (password.trim() === '')
-                alert('invalid password')
-            else if (password.trim() !== passwordRepeat)
-                alert('password do not match ')
+            try {
+                registerUser(name, surname, username, email, password, passwordRepeat)
 
-            else {
-                var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+                alert('user successfully registered')
 
-                var user = users.find(function (user) {
-                    return user.email === email || user.username === username
-                })
-
-                if (user !== undefined)
-                    alert('user already exists')
-
-                else if (password !== password)
-                    alert('password do not match')
-
-                else {
-                    user = {
-                        name: name,
-                        surname: surname,
-                        username: username,
-                        email: email,
-                        password: password
-                    }
-
-                    users.push(user)
-
-                    localStorage.users = JSON.stringify(users)
-
-                    alert('user successfully registered')
-
-                    location.href = 'login.html'
-
-                }
+                location.href = 'login.html'
+            } catch (error) {
+                alert(error.message)
             }
-
         }
 
     </script>
+
+    <script>
+        function registerUser(name, surname, username, email, password, passwordRepeat) {
+
+            if (name.trim() === '' || name.lenght < 2)
+                throw new error('invalid name')
+            if (surname.trim() === '' || surname.lenght < 2)
+                throw new error('ivalid surname')
+            if (username.trim() === '' || username.lenght < 2)
+                throw new error('invalid username')
+            if (!EMAIL_REGEX.test(email))
+                throw new error('invalid email')
+            if (password.trim() === '')
+                throw new error('invalid password')
+            if (password.trim() !== passwordRepeat)
+                throw new error('password do not match ')
+
+            var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+
+            var user = users.find(function (user) {
+                return user.email === email || user.username === username
+            })
+
+            if (user !== undefined)
+                throw new error('user already exists')
+
+            if (password !== password)
+                throw new error('password do not match')
+
+            user = {
+                name: name,
+                surname: surname,
+                username: username,
+                email: email,
+                password: password
+            }
+
+            users.push(user)
+
+            localStorage.users = JSON.stringify(users)
+
+        }
+    </script>
+
 </body>
 
 </html>

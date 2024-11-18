@@ -36,38 +36,49 @@
             var username = usernameInput.value
             var password = passwordInput.value
 
-            if (username.trim().lenght < 2)
-                alert('invalid username')
-            else if (password.trim().lenght < 8)
-                alert('invalid password')
+            try {
+                loginUser(username, password)
 
-            else {
-                var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+                location.href = 'home.html'
 
-                var user = users.find(function (user) {
-                    return user.username === username
-                })
+            } catch (error) {
+                alert(error.message)
+            }
 
-                if (user === undefined)
-                    alert('username does not exists')
+            var a = document.querySelector('a')
 
-                else if (user.password !== password)
-                    alert('wrong password')
+            a.onclick = function (event) {
+                event.preventDefault()
 
-                else {
-                    sessionStorage.username = username
-
-                    location.href = 'home.html'
-                }
+                location.href = 'register.html'
             }
         }
 
-        var a = document.querySelector('a')
+    </script>
 
-        a.onclick = function (event) {
-            event.preventDefault()
+    <script>
+        function loginUser(username, password) {
 
-            location.href = 'register.html'
+            if (username.trim().lenght < 2)
+                throw new error('invalid username')
+            if (password.trim().lenght < 8)
+                throw new error('invalid password')
+
+            var users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
+
+            var user = users.find(function (user) {
+                return user.username === username
+            })
+
+            if (user === undefined)
+                throw new error('username does not exists')
+
+            else if (user.password !== password)
+                throw new error('wrong password')
+
+            sessionStorage.username = username
+
+
         }
 
     </script>
