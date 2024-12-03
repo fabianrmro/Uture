@@ -32,38 +32,30 @@ createPostButton.onclick = function () {
     var createPostForm = document.createElement('form')
     createPostSection.appendChild(createPostForm)
 
-
-
-
-
-
     createPostForm.onsubmit = function (event) {
         event.preventDefault
 
-        var postImageInput = postImageInput.value
-        var postCaptionInput = postCaptionInput.value
+        var postImage = postImageInput.value
+        var postCaption = postCaptionInput.value
 
-        var posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
+        try {
+            createPost(postImage, postCaption)
 
-        post = {
-            image: postImage,
-            caption: postCaption,
-            user: sessionStorage.username,
-            date: new Date().toISOString()
+            document.body.removeChild(createPostSection)
+
+            for (var i = postList.children.length - 1; i > -1; i--) { // esto lo hago al reves porque asi me aseguro de eliminar todas las posiciones.
+                var child = postList.children[i]
+
+                postList.removeChild(child)
+            }
+
+            listPosts()
+        } catch (error) {
+            alert(error.message)
+
         }
 
-        posts.push(post)
-
-        localStorage.posts = JSON.stringify(posts)
-
-        document.body.removeChild(createPostSection)
     }
-
-
-
-
-
-
 
     var postImageLabel = document.createElement('label')
     postImageLabel.htmlFor = 'post-image-input'
@@ -84,8 +76,6 @@ createPostButton.onclick = function () {
     postCaptionInput.id = postCaptionLabel.htmlFor
     createPostForm.appendChild(postCaptionInput)
 
-
-
     var addButton = document.createElement('button')
     addButton.type = 'submit'
     addButton.innerText = 'Upload'
@@ -101,3 +91,40 @@ createPostButton.onclick = function () {
     }
 
 }
+
+var postList = document.createElement('section')
+document.body.appendChild(postList)
+
+function listPosts() {
+    var posts = getAllPosts()
+
+    posts.forEach(function (post) {
+        var postArticle = document.createElement('article')
+        postList.appendChild(postArticle)
+
+        var postAuthorTitle = document.createElement('h3') // este es el titulo que tiene el post,
+        postAuthorTitle.innerText = post.author
+        postArticle.appendChild(postAuthorTitle)
+
+        var postImage = document.createElement('img') // imgen
+        postImage.src = post.image
+        postArticle.appendChild(postImage)
+
+        var postCaption = document.createElement('p') // para el caption, usamos un p(parrafo)
+        postCaption.innerText = post.caption
+        postArticle.appendChild(postCaption)
+
+        var postDateTime = document.createElement('time')
+        postDateTime.innerText = formatTime(new Date(post.date))// ponemos innerText porque es solo texto el que se enseña en la pagina
+        postArticle.appendChild(postDateTime)
+
+        if (post.author === getUserUserName()) {
+            var deleteButton = document.createElement('button')
+            deleteButton.innerText = 'Delete'
+            postArticle.appendChild(deleteButton)
+        }
+
+    })
+}
+
+listPosts()
