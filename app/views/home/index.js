@@ -138,10 +138,16 @@
                                 listPosts()
                             } catch (error) {
                                 alert(error.message)
-                                if (error.message === 'post not found') { }
-
+                                if (error.message === 'post not found') {
+                                    clearPosts()
+                                    listPosts()
+                                }
                             }
                     }
+
+                    var editButton = document.createElement('button')
+                    editButton.innerText = 'Edit'
+                    postArticle.appendChild(editButton)
 
                 }
 
