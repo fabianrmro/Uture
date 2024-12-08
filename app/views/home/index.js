@@ -149,6 +149,57 @@
                     editButton.innerText = 'Edit'
                     postArticle.appendChild(editButton)
 
+                    editButton.onclick = function () {
+
+                        editCaptionForm = document.createElement('form')
+                        postArticle.appendChild(editCaptionForm)
+
+                        var editCaptionLabel = document.createElement('label')
+                        editCaptionLabel.htmlFor = 'edit-caption-input'
+                        editCaptionLabel.innerHTML = 'Edit'
+                        editCaptionForm.appendChild(editCaptionLabel)
+
+                        var editCaptionInput = document.createElement('input')
+                        editCaptionInput.id = editCaptionLabel.htmlFor
+                        editCaptionInput.value = post.caption
+                        editCaptionForm.appendChild(editCaptionInput)
+
+                        var editCaptionSubmitButton = document.createElement('button')
+                        editCaptionSubmitButton.type = 'submit'
+                        editCaptionSubmitButton.innerText = 'Save'
+                        editCaptionForm.appendChild(editCaptionSubmitButton)
+
+                        var editCaptionCancel = document.createElement('button')
+                        editCaptionCancel.type = 'cancel'
+                        editCaptionCancel.innerText = 'Cancel'
+                        editCaptionForm.appendChild(editCaptionCancel)
+
+                        editCaptionCancel.onclick = function () {
+                            postArticle.removeChild(editCaptionForm)
+                        }
+
+                        editCaptionForm.onsubmit = function (event) { // aquí mecanizo el comportamiento
+                            event.preventDefault()
+
+                            try {
+                                var newCaption = editCaptionInput.value
+
+                                updatePostCaption(post.id, newCaption)
+
+                                postArticle.removeChild(editCaptionForm)// si todo va bien, cambia el value y lo guardas en newCaption y luego remuevo form
+
+                            } catch (error) {
+                                alert(error.message)
+
+                                if (error.message === 'post not found') {
+
+                                }
+
+                            }
+                        }
+
+                    }
+
                 }
 
             })

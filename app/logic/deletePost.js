@@ -5,7 +5,7 @@ function deletePost(postId) { // recibe un parametro para que se ejecute
 
     var posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
 
-    var postIndex = posts.findIndex(function (post) {
+    var postIndex = posts.findIndex(function (post) { // find index por que busco un indice
         return post.id === postId
     })
 
