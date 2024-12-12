@@ -1,0 +1,27 @@
+.view {
+    /*/ la vista principal de mi pagina */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+
+.form {
+    /*/ trabajo con un elemento */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 80%;
+}
+
+.form__div {
+    /* aqui trabajo por sección para poder ir agrupando x separado y lo utilizo en todos los divs del html */
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.form__input {
+    font-size: inherit;
+}

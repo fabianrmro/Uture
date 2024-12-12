@@ -1,0 +1,66 @@
+.view {
+    /*/ la vista principal de mi pagina */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form {
+    /*/ trabajo con un elemento */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 80%;
+}
+
+.form__div {
+    /* aqui trabajo por sección para poder ir agrupando x separado y lo utilizo en todos los divs del html */
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.form__input {
+    font-size: inherit;
+}
+
+.form__button {
+    font-size: inherit;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post {
+    /*/ como estos elementos los crea indexJS. tengo que poner las clases en el archivo que corresponde */
+    box-shadow: 1px 1px lightgrey;
+}
+
+.post__author {
+    margin: 0.5rem;
+}
+
+.post__caption {
+    margin: 0.5rem;
+}
+
+.post__ActionButton {
+    margin: 0.5rem;
+}
+
+.post__date {
+    display: block;
+    /*/ esto significa que ocupa todo el ancho, y no permite elementos al lado */
+    margin: 0.5rem;
+    color: rgb(161, 155, 155)
+}
+
+.post__image {
+    width: 100%;
+}

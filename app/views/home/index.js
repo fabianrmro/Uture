@@ -32,6 +32,7 @@
         createPostSection.appendChild(createPostTitle)
 
         var createPostForm = document.createElement('form')
+        createPostForm.className = "form"
         createPostSection.appendChild(createPostForm)
 
         createPostForm.onsubmit = function (event) {
@@ -54,31 +55,40 @@
 
         }
 
+        var postImageFieldDIv = document.createElement('div')
+        postImageFieldDIv.className = "form__div"
+        createPostForm.appendChild(postImageFieldDIv)
+
         var postImageLabel = document.createElement('label')
         postImageLabel.htmlFor = 'post-image-input'
         postImageLabel.innerText = 'Image'
-        createPostForm.appendChild(postImageLabel)
+        postImageFieldDIv.appendChild(postImageLabel)
 
         var postImageInput = document.createElement('input')
         postImageInput.id = postImageLabel.htmlFor
-        createPostForm.appendChild(postImageInput)
+        postImageFieldDIv.appendChild(postImageInput)
 
+        var postCaptionFieldDiv = document.createElement('div')
+        postCaptionFieldDiv.className = "form__div"
+        createPostForm.appendChild(postCaptionFieldDiv)
 
         var postCaptionLabel = document.createElement('label')
         postCaptionLabel.htmlFor = 'post-caption-input'
         postCaptionLabel.innerText = 'Caption'
-        createPostForm.appendChild(postCaptionLabel)
+        postCaptionFieldDiv.appendChild(postCaptionLabel)
 
         var postCaptionInput = document.createElement('input')
         postCaptionInput.id = postCaptionLabel.htmlFor
-        createPostForm.appendChild(postCaptionInput)
+        postCaptionFieldDiv.appendChild(postCaptionInput)
 
         var addButton = document.createElement('button')
+        addButton.className = "form__button"
         addButton.type = 'submit'
         addButton.innerText = 'Upload'
         createPostForm.appendChild(addButton)
 
         var cancelButton = document.createElement('button')
+        cancelButton.className = "form__button"
         cancelButton.type = 'reset'
         cancelButton.innerText = 'Cancel'
         createPostForm.appendChild(cancelButton)
@@ -89,8 +99,11 @@
 
     }
 
+    var main = document.querySelector('main')
+
     var postList = document.createElement('section')
-    document.body.appendChild(postList)
+    postList.className = "post-list"
+    main.appendChild(postList)
 
     function clearPosts() {
         for (var i = postList.children.length - 1; i > -1; i--) { // esto lo hago al reves porque asi me aseguro de eliminar todas las posiciones.
@@ -106,28 +119,32 @@
 
             posts.forEach(function (post) {
                 var postArticle = document.createElement('article')
+                postArticle.className = "post"
                 postList.appendChild(postArticle)
 
                 var postAuthorTitle = document.createElement('h3') // este es el titulo que tiene el post,
+                postAuthorTitle.className = "post__author"
                 postAuthorTitle.innerText = post.author
                 postArticle.appendChild(postAuthorTitle)
 
                 var postImage = document.createElement('img') // imgen
+                postImage.className = "post__image"
                 postImage.src = post.image
                 postArticle.appendChild(postImage)
 
                 var postCaption = document.createElement('p') // para el caption, usamos un p(parrafo)
+                postCaption.className = "post__caption"
                 postCaption.innerText = post.caption
                 postArticle.appendChild(postCaption)
 
-                var postDateTime = document.createElement('time')
-                postDateTime.innerText = formatTime(new Date(post.date))// ponemos innerText porque es solo texto el que se enseña en la pagina
-                postArticle.appendChild(postDateTime)
-
                 if (post.author === getUserUserName()) {
+                    var ActionButtonsDiv = document.createElement('div')
+                    ActionButtonsDiv.className = "post__ActionButton"
+                    postArticle.appendChild(ActionButtonsDiv)
+
                     var deleteButton = document.createElement('button')
                     deleteButton.innerText = 'Delete'
-                    postArticle.appendChild(deleteButton)
+                    ActionButtonsDiv.appendChild(deleteButton)
 
                     deleteButton.onclick = function () {
                         if (confirm('delete post?')) // confirm para preguntar y confirmar una decisión, como esto tb esxite el open, que es cuando abro un archivo externo
@@ -147,7 +164,7 @@
 
                     var editButton = document.createElement('button')
                     editButton.innerText = 'Edit'
-                    postArticle.appendChild(editButton)
+                    ActionButtonsDiv.appendChild(editButton)
 
                     editButton.onclick = function () {
 
@@ -201,6 +218,11 @@
                     }
 
                 }
+
+                var postDateTime = document.createElement('time')
+                postDateTime.className = "post__date"
+                postDateTime.innerText = formatTime(new Date(post.date))// ponemos innerText porque es solo texto el que se enseña en la pagina
+                postArticle.appendChild(postDateTime)
 
             })
 

@@ -5,36 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="index.css">
 </head>
-<style>
-
-</style>
 
 <body>
+    <main class="view">
+        <!-- // utilizamos el main como contenido de toda la pantalla, podríamos usar el body, pero así lo separamos del header y el footer más adelante -->
+        <h2>Register</h2>
 
-    <form>
-        <label for="name-input"> Name </label>
-        <input type="text" id="name-input" name="name" placeholder="Name">
+        <form class="form">
+            <!-- // le digo que la clase form que está en el archivo css, se aplique a todos los form de esta -->
+            <div class="form__div">
+                <label for="name-input"> Name </label>
+                <input class="form__input" type="text" id="name-input" name="name" placeholder="Name">
+            </div>
 
-        <label for="surname-input">Surname</label>
-        <input type="text" id="surname-input" name="surname" placeholder="Surname">
+            <div class="form__div">
+                <label for="surname-input">Surname</label>
+                <input class="form__input" type="text" id="surname-input" name="surname" placeholder="Surname">
+            </div>
 
-        <label for="username-input">Username</label>
-        <input type="text" id="username-input" name="username" placeholder="Username">
+            <div class="form__div">
+                <label for="username-input">Username</label>
+                <input class="form__input" type="text" id="username-input" name="username" placeholder="Username">
+            </div>
 
-        <label for="email-input">E-mail</label>
-        <input type="text" id="email-input" name="email" placeholder="E-Mail">
+            <div class="form__div">
+                <label for="email-input">E-mail</label>
+                <input class="form__input" type="text" id="email-input" name="email" placeholder="E-Mail">
+            </div>
 
-        <label for="password-input">Password</label>
-        <input type="password" id="password-input" name="password" placeholder="Password">
+            <div class="form__div">
+                <label for="password-input">Password</label>
+                <input class="form__input" type="password" id="password-input" name="password" placeholder="Password">
+            </div>
 
-        <label for="paswordRepeat-input">Password Repeat</label>
-        <input type="password" id="passwordRepeat-input" name="paswordRepeat" placeholder="Repeat Password">
+            <div class="form__div">
+                <label for="paswordRepeat-input">Password Repeat</label>
+                <input class="form__input" type="password" id="passwordRepeat-input" name="paswordRepeat"
+                    placeholder="Repeat Password">
+            </div>
+        </form>
 
         <button type="submit">Register</button>
-    </form>
 
-    <a href="login.html">Login</a>
+        <a href="login.html">Login</a>
+    </main>
+
 
     <script src="../../logic/registerUser.js"></script>
     <script src="index.js"></script>
