@@ -1,31 +1,34 @@
-var EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+(function () {
 
-var form = document.querySelector('form')
+    var EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
 
-form.onsubmit = function (event) {
-    event.preventDefault()
+    var form = document.querySelector('form')
 
-    var nameInput = document.getElementById('name-input')
-    var surnameInput = document.getElementById('surname-input')
-    var usernameInput = document.getElementById('username-input')
-    var emailInput = document.getElementById('email-input')
-    var passwordInput = document.getElementById('password-input')
-    var passwordRepeatInput = document.getElementById('passwordRepeat-input ')
+    form.onsubmit = function (event) {
+        event.preventDefault()
 
-    var name = nameInput.value
-    var surname = surnameInput.value
-    var username = usernameInput.value
-    var email = emailInput.value
-    var password = passwordInput.value
-    var passwordRepeat = passwordRepeatInput.value
+        var nameInput = document.getElementById('name-input')
+        var surnameInput = document.getElementById('surname-input')
+        var usernameInput = document.getElementById('username-input')
+        var emailInput = document.getElementById('email-input')
+        var passwordInput = document.getElementById('password-input')
+        var passwordRepeatInput = document.getElementById('passwordRepeat-input ')
 
-    try {
-        registerUser(name, surname, username, email, password, passwordRepeat)
+        var name = nameInput.value
+        var surname = surnameInput.value
+        var username = usernameInput.value
+        var email = emailInput.value
+        var password = passwordInput.value
+        var passwordRepeat = passwordRepeatInput.value
 
-        alert('user successfully registered')
+        try {
+            registerUser(name, surname, username, email, password, passwordRepeat)
 
-        location.href = '../login'
-    } catch (error) {
-        alert(error.message)
+            alert('user successfully registered')
+
+            location.href = '../login'
+        } catch (error) {
+            alert(error.message)
+        }
     }
-}
+})()
