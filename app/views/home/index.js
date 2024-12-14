@@ -1,15 +1,23 @@
 (function () {
+    var header = document.createElement('header')
+    header.className = "header"
+    document.body.appendChild(header)
+
+    var userName = document.createElement('p')
+    header.appendChild(userName)
 
     try {
         var name = getUserName()
-        var title = document.querySelector('h1')
 
-        title.innerText = 'Hello, ' + name + '!'
+        userName.innerText = 'Hello, ' + name + '!'
     } catch (error) {
         alert(error.message)
     }
 
-    var logoutButton = document.getElementById('logout-button')
+    var logoutButton = document.createElement('button')
+    logoutButton.className = "form__button"
+    logoutButton.innerText = "Log Out"
+    header.appendChild(logoutButton)
 
     logoutButton.onclick = function () {
         try {
@@ -21,85 +29,10 @@
         }
     }
 
-    var createPostButton = document.getElementById('createPost-button')
 
-    createPostButton.onclick = function () {
-        var createPostSection = document.createElement('section')
-        document.body.appendChild(createPostSection)
-
-        var createPostTitle = document.createElement('h2')
-        createPostTitle.innerText = 'create Post'
-        createPostSection.appendChild(createPostTitle)
-
-        var createPostForm = document.createElement('form')
-        createPostForm.className = "form"
-        createPostSection.appendChild(createPostForm)
-
-        createPostForm.onsubmit = function (event) {
-            event.preventDefault
-
-            var postImage = postImageInput.value
-            var postCaption = postCaptionInput.value
-
-            try {
-                createPost(postImage, postCaption)
-
-                document.body.removeChild(createPostSection)
-
-                clearPosts()
-                listPosts()
-            } catch (error) {
-                alert(error.message)
-
-            }
-
-        }
-
-        var postImageFieldDIv = document.createElement('div')
-        postImageFieldDIv.className = "form__div"
-        createPostForm.appendChild(postImageFieldDIv)
-
-        var postImageLabel = document.createElement('label')
-        postImageLabel.htmlFor = 'post-image-input'
-        postImageLabel.innerText = 'Image'
-        postImageFieldDIv.appendChild(postImageLabel)
-
-        var postImageInput = document.createElement('input')
-        postImageInput.id = postImageLabel.htmlFor
-        postImageFieldDIv.appendChild(postImageInput)
-
-        var postCaptionFieldDiv = document.createElement('div')
-        postCaptionFieldDiv.className = "form__div"
-        createPostForm.appendChild(postCaptionFieldDiv)
-
-        var postCaptionLabel = document.createElement('label')
-        postCaptionLabel.htmlFor = 'post-caption-input'
-        postCaptionLabel.innerText = 'Caption'
-        postCaptionFieldDiv.appendChild(postCaptionLabel)
-
-        var postCaptionInput = document.createElement('input')
-        postCaptionInput.id = postCaptionLabel.htmlFor
-        postCaptionFieldDiv.appendChild(postCaptionInput)
-
-        var addButton = document.createElement('button')
-        addButton.className = "form__button"
-        addButton.type = 'submit'
-        addButton.innerText = 'Upload'
-        createPostForm.appendChild(addButton)
-
-        var cancelButton = document.createElement('button')
-        cancelButton.className = "form__button"
-        cancelButton.type = 'reset'
-        cancelButton.innerText = 'Cancel'
-        createPostForm.appendChild(cancelButton)
-
-        cancelButton.onclick = function () {
-            document.body.removeChild(createPostSection)
-        }
-
-    }
-
-    var main = document.querySelector('main')
+    var main = document.createElement('main')
+    main.className = "main"
+    document.body.appendChild(main)
 
     var postList = document.createElement('section')
     postList.className = "post-list"
@@ -232,4 +165,90 @@
     }
 
     listPosts()
+
+    var footer = document.createElement('footer')
+    footer.className = "footer"
+    document.body.appendChild(footer) // esto es donde vamos a poner el footer, lo mismo con el header y lo mismo que hice con el main.
+
+    var createPostButton = document.createElement('button')
+    createPostButton.className = "form__button"
+    createPostButton.innerText = "+"
+    footer.appendChild(createPostButton)
+
+    createPostButton.onclick = function () {
+        var createPostSection = document.createElement('section')
+        document.body.appendChild(createPostSection)
+
+        var createPostTitle = document.createElement('h2')
+        createPostTitle.innerText = 'create Post'
+        createPostSection.appendChild(createPostTitle)
+
+        var createPostForm = document.createElement('form')
+        createPostForm.className = "form"
+        createPostSection.appendChild(createPostForm)
+
+        createPostForm.onsubmit = function (event) {
+            event.preventDefault
+
+            var postImage = postImageInput.value
+            var postCaption = postCaptionInput.value
+
+            try {
+                createPost(postImage, postCaption)
+
+                document.body.removeChild(createPostSection)
+
+                clearPosts()
+                listPosts()
+            } catch (error) {
+                alert(error.message)
+
+            }
+
+        }
+
+        var postImageFieldDIv = document.createElement('div')
+        postImageFieldDIv.className = "form__div"
+        createPostForm.appendChild(postImageFieldDIv)
+
+        var postImageLabel = document.createElement('label')
+        postImageLabel.htmlFor = 'post-image-input'
+        postImageLabel.innerText = 'Image'
+        postImageFieldDIv.appendChild(postImageLabel)
+
+        var postImageInput = document.createElement('input')
+        postImageInput.id = postImageLabel.htmlFor
+        postImageFieldDIv.appendChild(postImageInput)
+
+        var postCaptionFieldDiv = document.createElement('div')
+        postCaptionFieldDiv.className = "form__div"
+        createPostForm.appendChild(postCaptionFieldDiv)
+
+        var postCaptionLabel = document.createElement('label')
+        postCaptionLabel.htmlFor = 'post-caption-input'
+        postCaptionLabel.innerText = 'Caption'
+        postCaptionFieldDiv.appendChild(postCaptionLabel)
+
+        var postCaptionInput = document.createElement('input')
+        postCaptionInput.id = postCaptionLabel.htmlFor
+        postCaptionFieldDiv.appendChild(postCaptionInput)
+
+        var addButton = document.createElement('button')
+        addButton.className = "form__button"
+        addButton.type = 'submit'
+        addButton.innerText = 'Upload'
+        createPostForm.appendChild(addButton)
+
+        var cancelButton = document.createElement('button')
+        cancelButton.className = "form__button"
+        cancelButton.type = 'reset'
+        cancelButton.innerText = 'Cancel'
+        createPostForm.appendChild(cancelButton)
+
+        cancelButton.onclick = function () {
+            document.body.removeChild(createPostSection)
+        }
+
+    }
+
 })()

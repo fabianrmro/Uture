@@ -29,6 +29,9 @@
 
 .form__button {
     font-size: inherit;
+    margin: .2rem 0;
+    /*/ esto hace margen arriba/abajo y cero a los lados */
+
 }
 
 .post-list {
@@ -39,7 +42,7 @@
 
 .post {
     /*/ como estos elementos los crea indexJS. tengo que poner las clases en el archivo que corresponde */
-    box-shadow: 1px 1px lightgrey;
+    box-shadow: 1px 1px 1.4px 1.2px lightgrey;
 }
 
 .post__author {
@@ -63,4 +66,42 @@
 
 .post__image {
     width: 100%;
+}
+
+.header {
+    position: fixed;
+    /*/ boton fijo, que no se mueva por más scroll que se haga */
+    top: 0;
+    /*/ es donde fijo dentro de la pantalla su posicion */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
+    align-items: center;
+    /*/ con esto se elinea verticalmente */
+}
+
+.main {
+    margin-bottom: 2.5rem;
+    /*/ aplico margen en el botton (abajo) */
+    margin-top: 2.5rem;
+
+}
+
+.footer {
+    position: fixed;
+    /*/ boton fijo, que no se mueva por más scroll que se haga */
+    bottom: 0;
+    /*/ lo fijo abajo de la pantalla */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
+    padding: .1rem 0;
+    /*/ da margen dentro del footer */
+
 }
