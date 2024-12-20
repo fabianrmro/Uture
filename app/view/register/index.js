@@ -2,9 +2,9 @@
 
     var EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
 
-    var form = document.querySelector('form')
+    var registerForm = new Form('form')
 
-    form.onsubmit = function (event) {
+    registerForm.onSubmit(function (event) {
         event.preventDefault()
 
         var nameInput = document.getElementById('name-input')
@@ -30,5 +30,13 @@
         } catch (error) {
             alert(error.message)
         }
-    }
+    })
+
+    var loginLink = new Link('a')
+
+    loginLink.onClick(function (event) {
+        event.preventDefault()
+
+        location.href = '../login'
+    })
 })()

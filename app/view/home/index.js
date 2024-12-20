@@ -1,23 +1,12 @@
 (function () {
-    var header = document.createElement('header')
-    header.className = 'header'
-    document.body.appendChild(header)
+    const body = new Components(document.body)
+    const header = new Header
+    body.add(header)
 
-    var userName = document.createElement('p')
-    header.appendChild(userName)
-
-    try {
-        var name = getUserName()
-
-        userName.innerText = 'Hello, ' + name + '!'
-    } catch (error) {
-        alert(error.message)
-    }
-
-    var logoutButton = document.createElement('button')
+    var logoutButton = document.createElement('button') // crear un componente button reutilizable 
     logoutButton.className = 'form__button'
     logoutButton.innerText = 'Log Out'
-    header.appendChild(logoutButton)
+    header.container.appendChild(logoutButton)
 
     logoutButton.onclick = function () {
         try {
@@ -66,7 +55,7 @@
                 postArticle.appendChild(postImage)
 
                 var postCaption = document.createElement('p') // para el caption, usamos un p(parrafo)
-                postCaption.className = 'post__caption'
+                postCaption.className = 'text__area'
                 postCaption.innerText = post.caption
                 postArticle.appendChild(postCaption)
 
@@ -111,6 +100,7 @@
                         editCaptionForm.appendChild(editCaptionLabel)
 
                         var editCaptionInput = document.createElement('input')
+                        editCaptionInput.className = "text__area"
                         editCaptionInput.id = editCaptionLabel.htmlFor
                         editCaptionInput.value = post.caption
                         editCaptionForm.appendChild(editCaptionInput)
@@ -181,7 +171,7 @@
     createPostButton.onclick = function () {
         var createPostSection = document.createElement('section')
         createPostSection.className = 'create-post-section'
-        document.body.appendChild(createPostSection)
+        footer.appendChild(createPostSection)
 
         var createPostTitle = document.createElement('h2')
         createPostTitle.className = 'createTitle'
@@ -201,7 +191,7 @@
             try {
                 createPost(postImage, postCaption)
 
-                document.body.removeChild(createPostSection)
+                footer.removeChild(createPostSection)
 
                 clearPosts()
                 listPosts()
@@ -251,9 +241,9 @@
         createPostForm.appendChild(cancelButton)
 
         cancelButton.onclick = function () {
-            document.body.removeChild(createPostSection)
+            footer.removeChild(createPostSection)
         }
 
     }
 
-})()
+})() 
