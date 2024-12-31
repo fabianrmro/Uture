@@ -6,7 +6,7 @@ class Header extends Components {
 
 
         const userName = new Paragraph
-        userName.setClassName = 'post__author' // como exrtienden de components es setClass
+        userName.setClassName = 'hello__User ' // como exrtienden de components es setClass
         this.add(userName)
 
         try {
@@ -16,5 +16,20 @@ class Header extends Components {
         } catch (error) {
             alert(error.message)
         }
+
+        const logoutButton = new Button
+        logoutButton.setClassName('form__button')
+        logoutButton.setText('Log Out')
+        this.add(logoutButton)
+
+        logoutButton.onClick(function () {
+            try {
+                logoutUser()
+
+                location.href = '../login '
+            } catch (error) {
+                alert(error.message)
+            }
+        })
     }
 }

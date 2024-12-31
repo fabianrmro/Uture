@@ -1,25 +1,25 @@
-(function () {
+{
 
-    var EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+    const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
 
-    var registerForm = new Form('form')
+    const registerForm = new Form('form')
 
     registerForm.onSubmit(function (event) {
         event.preventDefault()
 
-        var nameInput = document.getElementById('name-input')
-        var surnameInput = document.getElementById('surname-input')
-        var usernameInput = document.getElementById('username-input')
-        var emailInput = document.getElementById('email-input')
-        var passwordInput = document.getElementById('password-input')
-        var passwordRepeatInput = document.getElementById('passwordRepeat-input ')
+        const nameInput = document.getElementById('name-input')
+        const surnameInput = document.getElementById('surname-input')
+        const usernameInput = document.getElementById('username-input')
+        const emailInput = document.getElementById('email-input')
+        const passwordInput = document.getElementById('password-input')
+        const passwordRepeatInput = document.getElementById('passwordRepeat-input ')
 
-        var name = nameInput.value
-        var surname = surnameInput.value
-        var username = usernameInput.value
-        var email = emailInput.value
-        var password = passwordInput.value
-        var passwordRepeat = passwordRepeatInput.value
+        const name = nameInput.value
+        const surname = surnameInput.value
+        const username = usernameInput.value
+        const email = emailInput.value
+        const password = passwordInput.value
+        const passwordRepeat = passwordRepeatInput.value
 
         try {
             registerUser(name, surname, username, email, password, passwordRepeat)
@@ -32,11 +32,11 @@
         }
     })
 
-    var loginLink = new Link('a')
+    const loginLink = new Link('a')
 
     loginLink.onClick(function (event) {
         event.preventDefault()
 
         location.href = '../login'
     })
-})()
+}

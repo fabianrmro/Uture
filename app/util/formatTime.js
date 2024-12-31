@@ -29,7 +29,7 @@ function formatTime(date) {
     var months = Math.round(weeks / 4)
 
     if (months < 12)
-        return months + ' month' + (month === 1 ? '' : 's')
+        return months + ' month' + (months === 1 ? '' : 's')
 
     var years = Math.round(months / 12)
 

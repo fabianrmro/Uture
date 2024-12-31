@@ -10,6 +10,14 @@ class Components { // esta es un clase constructor, que sirve como base para pod
         this.container.appendChild(child.container)
     }
 
+
+    remove(child) {
+        if (!(child instanceof Components))
+            throw new TypeError('child is not a components')
+
+        this.container.removeChild(child.container)
+    }
+
     setText(text) {
         if (typeof text !== 'string')
             throw new TypeError('text is not a string')
