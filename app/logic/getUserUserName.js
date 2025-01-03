@@ -1,4 +1,8 @@
-function getUserUserName() {
+{
+    const getUserUserName = () => {
 
-    return sessionStorage.username
+        return sessionStorage.username
+    }
+
+    logic.getUserUserName = getUserUserName
 }

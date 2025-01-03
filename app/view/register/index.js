@@ -22,7 +22,7 @@
         const passwordRepeat = passwordRepeatInput.value
 
         try {
-            registerUser(name, surname, username, email, password, passwordRepeat)
+            logic.registerUser(name, surname, username, email, password, passwordRepeat)
 
             alert('user successfully registered')
 

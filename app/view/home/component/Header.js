@@ -1,4 +1,4 @@
-class Header extends Components {
+class Header extends Component {
     constructor() {
         super(document.createElement('header'))
 
@@ -6,11 +6,11 @@ class Header extends Components {
 
 
         const userName = new Paragraph
-        userName.setClassName = 'hello__User ' // como exrtienden de components es setClass
+        userName.setClassName = 'hello__User ' // como exrtienden de  es setClass
         this.add(userName)
 
         try {
-            var name = getUserName()
+            var name = logic.getUserName()
 
             userName.setText('Hello, ' + name + '!') // lo mismo de arriba es setText
         } catch (error) {
@@ -24,7 +24,7 @@ class Header extends Components {
 
         logoutButton.onClick(function () {
             try {
-                logoutUser()
+                logic.logoutUser()
 
                 location.href = '../login '
             } catch (error) {

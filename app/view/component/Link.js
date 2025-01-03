@@ -1,4 +1,4 @@
-class Link extends Components {
+class Link extends Component {
     constructor(selector) {
         super(document.querySelector(selector))
     }

@@ -1,4 +1,4 @@
-class Image extends Components {
+class Image extends Component {
     constructor() {
         super(document.createElement('img'))
     }

@@ -1,19 +1,19 @@
-class Components { // esta es un clase constructor, que sirve como base para poder crear mis propios componentes.
+class Component { // esta es un clase constructor, que sirve como base para poder crear mis propios componentes.
     constructor(container) {
         this.container = container
     }
 
     add(child) {
-        if (!(child instanceof Components))
-            throw new TypeError('child is not a components')
+        if (!(child instanceof Component))
+            throw new TypeError('child is not a ')
 
         this.container.appendChild(child.container)
     }
 
 
     remove(child) {
-        if (!(child instanceof Components))
-            throw new TypeError('child is not a components')
+        if (!(child instanceof Component))
+            throw new TypeError('child is not a ')
 
         this.container.removeChild(child.container)
     }

@@ -1,4 +1,4 @@
-class Form extends Components {
+class Form extends Component {
     constructor(selector) {
         super(selector ? document.querySelector(selector) : document.createElement('form')) // si hay un form en el dom lo busco con el selector, si no lo hay lo creo 
     }

@@ -1,4 +1,4 @@
-class Post extends Components {
+class Post extends Component {
     constructor(post) {
         super(document.createElement('article'))
         this.setClassName('post')
@@ -21,7 +21,7 @@ class Post extends Components {
         const self = this // es dinamico
 
         if (post.author === getUserUserName()) {
-            const ActionButtonsDiv = new Components(document.createElement('div'))
+            const ActionButtonsDiv = new Component(document.createElement('div'))
             ActionButtonsDiv.setClassName('post__ActionButton')
             this.add(ActionButtonsDiv)
 
@@ -32,7 +32,7 @@ class Post extends Components {
             deleteButton.onClick(function () {
                 if (confirm('delete post?')) // confirm para preguntar y confirmar una decisión
                     try {
-                        deletePost(post.id) // le paso los parametros que quiero eliminar
+                        logic.deletePost(post.id) // le paso los parametros que quiero eliminar
 
                         self.onPostDeletedCallback()
 
@@ -51,41 +51,38 @@ class Post extends Components {
 
             editButton.onClick(function () {
                 const editCaptionForm = new Form
-                editCaptionForm.setClassName('form')
                 self.add(editCaptionForm) // self porque hace referencia al this de fuera
 
-                const editCaptionLabel = document.createElement('label')
-                editCaptionLabel.htmlFor = 'edit-caption-input'
-                editCaptionLabel.innerHTML = 'Edit'
-                editCaptionForm.appendChild(editCaptionLabel)
+                const editCaptionLabel = new Label
+                editCaptionLabel.setFor('edit-caption-input')
+                editCaptionForm.add(editCaptionLabel)
 
-                const editCaptionInput = document.createElement('input')
-                editCaptionInput.className = "text__area"
-                editCaptionInput.id = editCaptionLabel.htmlFor
-                editCaptionInput.value = post.caption
-                editCaptionForm.appendChild(editCaptionInput)
+                const editCaptionInput = new Input
+                editCaptionInput.setId(editCaptionLabel.getFor)
+                editCaptionInput.setValue(post.caption)
+                editCaptionForm.add(editCaptionInput)
 
-                const editCaptionSubmitButton = document.createElement('button')
-                editCaptionSubmitButton.type = 'submit'
-                editCaptionSubmitButton.innerText = 'Save'
-                editCaptionForm.appendChild(editCaptionSubmitButton)
+                const editCaptionSubmitButton = new Button
+                editCaptionSubmitButton.setType('submit')
+                editCaptionSubmitButton.setText('Save')
+                editCaptionForm.add(editCaptionSubmitButton)
 
-                const editCaptionCancel = document.createElement('button')
-                editCaptionCancel.type = 'cancel'
-                editCaptionCancel.innerText = 'Cancel'
-                editCaptionForm.appendChild(editCaptionCancel)
+                const editCaptionCancel = new Button
+                editCaptionCancel.setType('cancel')
+                editCaptionCancel.setText('Cancel')
+                editCaptionForm.add(editCaptionCancel)
 
-                editCaptionCancel.onclick = function () {
+                editCaptionCancel.onClick(function () {
                     self.remove(editCaptionForm)
-                }
+                })
 
                 editCaptionForm.onSubmit(function (event) { // aquí mecanizo el comportamiento
                     event.preventDefault()
 
                     try {
-                        const newCaption = editCaptionInput.value
+                        const newCaption = editCaptionInput.getValue
 
-                        updatePostCaption(post.id, newCaption)
+                        logic.updatePostCaption(post.id, newCaption)
 
                         self.remove(editCaptionForm)// si todo va bien, cambia el value y lo guardas en newCaption y luego remuevo form
 
@@ -103,10 +100,10 @@ class Post extends Components {
             })
         }
 
-        const postDateTime = document.createElement('time')
-        postDateTime.className = 'post__date'
-        postDateTime.innerText = formatTime(new Date(post.date))// ponemos innerText porque es solo texto el que se enseña en la pagina
-        this.container.appendChild(postDateTime)
+        const postDateTime = new Component(document.createElement('time'))
+        postDateTime.setClassName('post__date')
+        postDateTime.setText(formatTime(new Date(post.date)))// ponemos innerText porque es solo texto el que se enseña en la pagina
+        this.add(postDateTime)
 
     }
 
