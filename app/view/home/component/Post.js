@@ -20,10 +20,25 @@ class Post extends Component {
 
         const self = this // es dinamico
 
+        const ActionButtonsDiv = new Component(document.createElement('div'))
+        ActionButtonsDiv.setClassName('post__ActionButton')
+        this.add(ActionButtonsDiv)
+
+        const postLikeButton = new Button
+        postLikeButton.setText(post.likes.includes(logic.getUserUserName()) ? '♥️' : '♡')
+        ActionButtonsDiv.add(postLikeButton)
+
+        postLikeButton.onClick(() => {
+            try {
+                logic.toggleLikePost
+
+            } catch (error) {
+                console.log(error)
+                alert(error.message)
+            }
+        })
+
         if (post.author === logic.getUserUserName()) {
-            const ActionButtonsDiv = new Component(document.createElement('div'))
-            ActionButtonsDiv.setClassName('post__ActionButton')
-            this.add(ActionButtonsDiv)
 
             const deleteButton = new Button
             deleteButton.setText('Delete')
@@ -37,6 +52,8 @@ class Post extends Component {
                         self.onPostDeletedCallback()
 
                     } catch (error) {
+                        console.log(error)
+
                         alert(error.message)
                         if (error.message === 'post not found') {
 
@@ -87,6 +104,8 @@ class Post extends Component {
                         self.onPostCaptionEditedCallback()
 
                     } catch (error) {
+                        console.log(error)
+
                         alert(error.message)
 
                         if (error.message === 'post not found') {

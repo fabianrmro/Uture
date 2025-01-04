@@ -3,8 +3,6 @@
         if (!image.startsWith('http'))
             throw new error('invalid Image')
 
-        const posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
-
         const post = {
             id: generateId(),
             image: image,
@@ -13,9 +11,7 @@
             date: new Date().toISOString()
         }
 
-        posts.push(post)
-
-        localStorage.posts = JSON.stringify(posts)
+        data.insertPost(post)
 
     }
 

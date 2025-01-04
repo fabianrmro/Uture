@@ -1,6 +1,6 @@
 {
     const getAllPosts = () => {
-        const posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
+        let posts = data.findPosts(post => true)
 
         return posts.reverse() // este metodo te devuelve el array invertido
 

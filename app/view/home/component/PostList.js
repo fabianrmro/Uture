@@ -35,6 +35,7 @@ class PostList extends Component {
             })
 
         } catch (error) {
+            console.log(error)
             alert(error.message)
         }
     }

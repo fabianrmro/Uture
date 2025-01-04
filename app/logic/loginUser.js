@@ -10,7 +10,7 @@
             return user.username === username
         })
 
-        if (user === undefined)
+        if (user === null)
             throw new error('username does not exists')
 
         else if (user.password !== password)

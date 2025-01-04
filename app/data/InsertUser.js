@@ -7,5 +7,5 @@
         localStorage.users = JSON.stringify(users)
     }
 
-    DataTransfer.insertUser = insertUser
+    data.insertUser = insertUser
 }

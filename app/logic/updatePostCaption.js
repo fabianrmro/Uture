@@ -3,16 +3,14 @@
         if (postId.trim().length === 0)
             throw new Error('invalid postId')
 
-        const posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
+        const post = data.findPost(post => post.id === postId) //  find por que busco un elemento
 
-        const post = posts.find(post => post.id === postId) //  find por que busco un elemento
-
-        if (post === undefined)
+        if (post === null)
             throw new Error('post not found')
 
         post.caption = newCaption
 
-        localStorage.posts = JSON.stringify(posts)
+        data.updatePost(post => post.id === postId, post)
     }
 
     logic.updatePostCaption = updatePostCaption
