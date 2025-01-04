@@ -1,3 +1,1 @@
-const logic = {
-
-}
+const logic = {}

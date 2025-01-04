@@ -22,7 +22,7 @@ class Header extends Component {
         logoutButton.setText('Log Out')
         this.add(logoutButton)
 
-        logoutButton.onClick(function () {
+        logoutButton.onClick(() => {
             try {
                 logic.logoutUser()
 

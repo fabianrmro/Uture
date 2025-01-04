@@ -5,9 +5,7 @@
 
         const posts = localStorage.posts !== undefined ? JSON.parse(localStorage.posts) : []
 
-        const post = posts.find(function (post) { // find por que busco un elemento 
-            return post.id === postId
-        })
+        const post = posts.find(post => post.id === postId) //  find por que busco un elemento
 
         if (post === undefined)
             throw new Error('post not found')

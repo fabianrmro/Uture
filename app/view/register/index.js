@@ -4,7 +4,7 @@
 
     const registerForm = new Form('form')
 
-    registerForm.onSubmit(function (event) {
+    registerForm.onSubmit(event => {
         event.preventDefault()
 
         const nameInput = document.getElementById('name-input')
@@ -34,7 +34,7 @@
 
     const loginLink = new Link('a')
 
-    loginLink.onClick(function (event) {
+    loginLink.onClick(event => {
         event.preventDefault()
 
         location.href = '../login'

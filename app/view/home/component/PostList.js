@@ -5,7 +5,7 @@ class PostList extends Component {
     }
 
     clearPosts() {
-        for (const i = this.children.length - 1; i > -1; i--) { // esto lo hago al reves porque asi me aseguro de eliminar todas las posiciones.
+        for (const i = this.container.children.length - 1; i > -1; i--) { // esto lo hago al reves porque asi me aseguro de eliminar todas las posiciones.
             //const child = postList.container.children[i]
             const child = this.container.children[i] // cambie a "this" por que ya está dentro del postList
 
@@ -19,15 +19,15 @@ class PostList extends Component {
 
             const self = this
 
-            posts.forEach(function (_post) {
+            posts.forEach(_post => {
                 const post = new Post(_post)
 
-                post.onPostDeleted(function () {
+                post.onPostDeleted(() => {
                     self.clearPosts()
                     self.listPosts()
                 })
 
-                post.onPostCaptionEdited(function () {
+                post.onPostCaptionEdited(() => {
                     self.clearPosts()
                     self.listPosts()
                 })

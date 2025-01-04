@@ -6,9 +6,7 @@
         if (password.trim().lenght < 8)
             throw new error('invalid password')
 
-        const users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
-
-        const user = users.find(function (user) {
+        const user = data.findUser(function (user) {
             return user.username === username
         })
 

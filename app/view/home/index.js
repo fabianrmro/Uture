@@ -4,20 +4,19 @@
     home.add(header)
 
     const body = new Component(document.createElement('main'))
-    body.setClassName('main')
+    body.setClassName('view main')
     home.add(body)
 
     const postList = new PostList
     body.add(postList)
 
-    PostList.listPosts()
+    postList.listPosts()
 
     const footer = new Footer
     home.add(footer)
 
     footer.onPostCreated(() => {
-        PostList.clearPosts()
-        PostList.listPosts()
+        postList.clearPosts()
+        postList.listPosts()
     })
-
 }

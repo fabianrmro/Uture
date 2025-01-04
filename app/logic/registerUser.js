@@ -13,18 +13,20 @@
             throw new error('invalid password')
         if (password.trim() !== passwordRepeat)
             throw new error('password do not match ')
-
-        const users = localStorage.users !== undefined ? JSON.parse(localStorage.users) : []
-
-        const user = users.find(function (user) {
-            return user.email === email || user.username === username
-        })
-
-        if (user !== undefined)
-            throw new error('user already exists')
-
         if (password !== password)
             throw new error('password do not match')
+
+
+        let user = data.findUser(user => user.email === email)
+
+        if (user !== null)
+            throw new error('email already exists')
+
+        user = data.findUser(user => user.username === username)
+
+        if (user !== null)
+            throw new error('user already exists')
+
 
         user = {
             name: name,
@@ -34,9 +36,7 @@
             password: password
         }
 
-        users.push(user)
-
-        localStorage.users = JSON.stringify(users)
+        data.inserUser(user)
 
     }
 

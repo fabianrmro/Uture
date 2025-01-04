@@ -10,7 +10,7 @@ class Footer extends Component {
 
         const self = this
 
-        createPostButton.onClick(function () {
+        createPostButton.onClick(() => {
             const createPostSection = new Component(document.createElement('section'))
             createPostSection.setClassName('create-post-section')
             self.add(createPostSection)
@@ -24,8 +24,8 @@ class Footer extends Component {
             createPostForm.setClassName('form')
             createPostSection.add(createPostForm)
 
-            createPostForm.onSubmit(function (event) {
-                event.preventDefault
+            createPostForm.onSubmit(event => {
+                event.preventDefault()
 
                 const postImage = postImageInput.getValue()
                 const postCaption = postCaptionInput.getValue()
@@ -66,7 +66,7 @@ class Footer extends Component {
             postCaptionFieldDiv.add(postCaptionLabel)
 
             const postCaptionInput = new Input
-            postCaptionInput.id(postCaptionLabel.getFor)
+            postCaptionInput.setId(postCaptionLabel.getFor)
             postCaptionFieldDiv.add(postCaptionInput)
 
             const addButton = new Button
@@ -81,7 +81,7 @@ class Footer extends Component {
             cancelButton.setText('Cancel')
             createPostForm.add(cancelButton)
 
-            cancelButton.onClick(function () {
+            cancelButton.onClick(() => {
                 self.remove(createPostSection)
             })
 
