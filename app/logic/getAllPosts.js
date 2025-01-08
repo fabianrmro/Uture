@@ -1,10 +1,18 @@
 {
     const getAllPosts = () => {
-        let posts = data.findPosts(post => true)
+        const user = data.findUser(user => user.username === sessionStorage.username)
 
-        return posts.reverse() // este metodo te devuelve el array invertido
+        if (user === null)
+            throw new Error('user not found')
 
+        const posts = data.findPosts(() => true)
+
+        posts.forEach(post => {
+            post.fav = user.favs.includes(post.id)
+            post.like = post.likes.includes(sessionStorage.username)
+        })
+
+        return posts.reverse()
     }
 
-    logic.getAllPosts = getAllPosts
 }

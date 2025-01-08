@@ -31,6 +31,16 @@ class PostList extends Component {
                     self.clearPosts()
                     self.listPosts()
                 })
+
+                post.onPostLikeToggle(() => {
+                    self.clearPosts()
+                    self.listPosts()
+                })
+
+                post.onPostFavToggle(() => {
+                    self.clearPosts()
+                    self.listPosts()
+                })
                 self.add(post)
             })
 

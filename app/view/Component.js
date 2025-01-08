@@ -5,7 +5,7 @@ class Component { // esta es un clase constructor, que sirve como base para pode
 
     add(child) {
         if (!(child instanceof Component))
-            throw new TypeError('child is not a ')
+            throw new TypeError('child is not a Component')
 
         this.container.appendChild(child.container)
     }
@@ -13,9 +13,24 @@ class Component { // esta es un clase constructor, que sirve como base para pode
 
     remove(child) {
         if (!(child instanceof Component))
-            throw new TypeError('child is not a ')
+            throw new TypeError('child is not a Component')
 
         this.container.removeChild(child.container)
+    }
+
+    has(child) {
+        if (!(child instanceof Component))
+            throw new Error('child is not a Component')
+
+        const children = this.container.children
+
+        for (let i = 0; i < children.lenght; i++) {
+            const _child = children[i]
+
+            if (_child === child.container) return true
+        }
+
+        return false
     }
 
     setText(text) {

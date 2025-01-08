@@ -24,13 +24,31 @@ class Post extends Component {
         ActionButtonsDiv.setClassName('post__ActionButton')
         this.add(ActionButtonsDiv)
 
-        const postLikeButton = new Button
-        postLikeButton.setText(post.likes.includes(logic.getUserUserName()) ? '♥️' : '♡')
-        ActionButtonsDiv.add(postLikeButton)
+        const postToggleLikeButton = new Button
+        postToggleLikeButton.setText((post.like ? '♥️' : '♡') + ' ' + post.likes.length + ' like'(post.like.length === 1 ? '' : 's'))
+        ActionButtonsDiv.add(postToggleLikeButton)
 
-        postLikeButton.onClick(() => {
+        postToggleLikeButton.onClick(() => {
             try {
-                logic.toggleLikePost
+                logic.toggleLikePost(post.id)
+
+                self.onPostLikeToggleCallback()
+
+            } catch (error) {
+                console.log(error)
+                alert(error.message)
+            }
+        })
+
+        const postFavToggleButton = new Button
+        postFavToggleButton.setText(post.fav ? '😍' : '😀')
+        ActionButtonsDiv.add(postFavToggleButton)
+
+        postFavToggleButton.onClick(() => {
+            try {
+                logic.toggleFavPost(post.id)
+
+                self.onPostFavToggleCallback()
 
             } catch (error) {
                 console.log(error)
@@ -66,8 +84,12 @@ class Post extends Component {
             editButton.setText('Edit')
             ActionButtonsDiv.add(editButton)
 
+            let editCaptionForm
+
             editButton.onClick(() => {
-                const editCaptionForm = new Form
+                if (editCaptionForm) return
+
+                editCaptionForm = new Form
                 self.add(editCaptionForm) // self porque hace referencia al this de fuera
 
                 const editCaptionLabel = new Label
@@ -89,7 +111,11 @@ class Post extends Component {
                 editCaptionCancel.setText('Cancel')
                 editCaptionForm.add(editCaptionCancel)
 
-                editCaptionCancel.onClick(() => self.remove(editCaptionForm))
+                editCaptionCancel.onClick(() => {
+                    self.remove(editCaptionForm)
+                    editCaptionForm = undefined
+                })
+
 
                 editCaptionForm.onSubmit(event => { // aquí mecanizo el comportamiento
                     event.preventDefault()
@@ -101,7 +127,12 @@ class Post extends Component {
 
                         self.remove(editCaptionForm)// si todo va bien, cambia el value y lo guardas en newCaption y luego remuevo form
 
+                        editCaptionForm = undefined
+
+
                         self.onPostCaptionEditedCallback()
+
+
 
                     } catch (error) {
                         console.log(error)
@@ -130,5 +161,13 @@ class Post extends Component {
 
     onPostCaptionEdited(callback) {
         this.onPostCaptionEditedCallback = callback
+    }
+
+    onPostLikeToggle(callback) {
+        this.onPostLikeToggleCallback = callback
+    }
+
+    onPostFavToggle(callback) {
+        this.onPostFavToggleCallback = callback
     }
 }

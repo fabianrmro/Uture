@@ -33,7 +33,8 @@
             surname: surname,
             username: username,
             email: email,
-            password: password
+            password: password,
+            favs: []
         }
 
         data.inserUser(user)

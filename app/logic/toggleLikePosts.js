@@ -17,4 +17,6 @@
 
         data.updatePost(post => post.id === postId)
     }
+
+    logic.toggleLikePosts = toggleLikePosts
 }

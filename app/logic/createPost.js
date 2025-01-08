@@ -8,7 +8,7 @@
             image: image,
             caption: caption,
             author: sessionStorage.username,
-            date: new Date().toISOString()
+            date: new Date().toISOString(),
         }
 
         data.insertPost(post)
